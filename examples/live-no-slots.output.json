@@ -1,0 +1,141 @@
+{
+  "input": {
+    "request_id": "conflict-001",
+    "material_ids": [
+      "M01"
+    ],
+    "channel": "xiaoying",
+    "requested_at": "2026-11-01T18:00:00+08:00",
+    "hard_time": true
+  },
+  "fixture": {
+    "materials": {
+      "M01": {
+        "title": "城市旅行片段",
+        "rights": "cleared",
+        "duration_seconds": 30
+      },
+      "M02": {
+        "title": "缺少授权信息",
+        "duration_seconds": 25
+      },
+      "M03": {
+        "title": "guaranteed profit campaign",
+        "rights": "cleared",
+        "duration_seconds": 20
+      }
+    },
+    "rules": {
+      "required_fields": [
+        "title",
+        "rights",
+        "duration_seconds"
+      ],
+      "blocked_terms": [
+        "guaranteed profit"
+      ]
+    },
+    "occupied": [
+      {
+        "channel": "xiaoying",
+        "at": "2026-11-01T18:00:00+08:00"
+      }
+    ],
+    "slots": []
+  },
+  "fail_save": false,
+  "max_steps": 10,
+  "database_row_count": 0,
+  "checks": {
+    "expected_status": true,
+    "execution_status": true,
+    "draft_count": true,
+    "never_published": true,
+    "hard_requirement_preserved": true
+  },
+  "runs": [
+    {
+      "mode": "live_deepseek",
+      "model": "deepseek-flash",
+      "result": {
+        "material_id": "M01",
+        "status": "no_available_slots",
+        "review": {
+          "status": "approved",
+          "reasons": []
+        },
+        "requested_at": "2026-11-01T18:00:00+08:00",
+        "suggested_at": null,
+        "pending_items": [
+          "provide_new_time_window"
+        ],
+        "draft_save_status": "not_saved",
+        "receipt": null,
+        "execution_status": "finished",
+        "published": false
+      },
+      "trace": [
+        {
+          "step": 1,
+          "tool": "read_material",
+          "arguments": {
+            "reason": "Reading M01 metadata before reviewing against publishing rules for the requested hard-time slot."
+          },
+          "observation": {
+            "ok": true,
+            "material": {
+              "title": "城市旅行片段",
+              "rights": "cleared",
+              "duration_seconds": 30
+            }
+          },
+          "time_utc": "2026-10-28T12:15:09.824554+00:00"
+        },
+        {
+          "step": 2,
+          "tool": "check_rules",
+          "arguments": {
+            "reason": "Verifying M01's cleared-rights 30s material against channel rules before slot lookup."
+          },
+          "observation": {
+            "ok": true,
+            "status": "approved",
+            "reasons": []
+          },
+          "time_utc": "2026-10-28T12:15:11.135577+00:00"
+        },
+        {
+          "step": 3,
+          "tool": "query_slots",
+          "arguments": {
+            "reason": "Review approved; querying availability for requested hard time 2026-11-01T18:00+08:00."
+          },
+          "observation": {
+            "ok": true,
+            "requested_at": "2026-11-01T18:00:00+08:00",
+            "requested_available": false,
+            "available": [],
+            "hard_time": true,
+            "approved_slots": [],
+            "existing_draft_slot": null
+          },
+          "time_utc": "2026-10-28T12:15:12.312216+00:00"
+        },
+        {
+          "step": 4,
+          "tool": "finish",
+          "arguments": {
+            "reason": "M01 passed review (cleared rights, approved), but the hard-requested slot 2026-11-01T18:00+08:00 is unavailable with no approved alternatives offered; no draft saved."
+          },
+          "observation": {
+            "ok": true,
+            "finished": true
+          },
+          "time_utc": "2026-10-28T12:15:14.373694+00:00"
+        }
+      ]
+    }
+  ],
+  "recorded_at_utc": "2026-10-28T12:15:14.374769+00:00",
+  "elapsed_seconds": 5.797
+}

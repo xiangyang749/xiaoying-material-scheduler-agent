@@ -1,0 +1,82 @@
+[
+  {
+    "case": "normal",
+    "artifact": "examples/mock-normal.output.json",
+    "status": "ready",
+    "execution_status": "finished",
+    "passed": true,
+    "elapsed_seconds": 0.066
+  },
+  {
+    "case": "missing",
+    "artifact": "examples/mock-missing.output.json",
+    "status": "needs_information",
+    "execution_status": "finished",
+    "passed": true,
+    "elapsed_seconds": 0.034
+  },
+  {
+    "case": "risk",
+    "artifact": "examples/mock-risk.output.json",
+    "status": "blocked",
+    "execution_status": "finished",
+    "passed": true,
+    "elapsed_seconds": 0.034
+  },
+  {
+    "case": "conflict",
+    "artifact": "examples/mock-conflict.output.json",
+    "status": "pending_confirmation",
+    "execution_status": "finished",
+    "passed": true,
+    "elapsed_seconds": 0.053
+  },
+  {
+    "case": "save-failure",
+    "artifact": "examples/mock-save-failure.output.json",
+    "status": "save_failed",
+    "execution_status": "finished",
+    "passed": true,
+    "elapsed_seconds": 0.036
+  },
+  {
+    "case": "duplicate",
+    "artifact": "examples/mock-duplicate.output.json",
+    "status": "ready",
+    "execution_status": "finished",
+    "passed": true,
+    "elapsed_seconds": 0.059
+  },
+  {
+    "case": "changed-conflict",
+    "artifact": "examples/mock-changed-conflict.output.json",
+    "status": "pending_confirmation",
+    "execution_status": "finished",
+    "passed": true,
+    "elapsed_seconds": 0.05
+  },
+  {
+    "case": "confirmed",
+    "artifact": "examples/mock-confirmed.output.json",
+    "status": "ready",
+    "execution_status": "finished",
+    "passed": true,
+    "elapsed_seconds": 0.051
+  },
+  {
+    "case": "no-slots",
+    "artifact": "examples/mock-no-slots.output.json",
+    "status": "no_available_slots",
+    "execution_status": "finished",
+    "passed": true,
+    "elapsed_seconds": 0.032
+  },
+  {
+    "case": "step-limit",
+    "artifact": "examples/mock-step-limit.output.json",
+    "status": "incomplete",
+    "execution_status": "step_limit",
+    "passed": true,
+    "elapsed_seconds": 0.034
+  }
+]

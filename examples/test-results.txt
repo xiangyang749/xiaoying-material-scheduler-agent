@@ -1,0 +1,33 @@
+test_blocked_risk (test_agent.AgentTests.test_blocked_risk) ... ok
+test_changed_occupied_slot_changes_suggestion (test_agent.AgentTests.test_changed_occupied_slot_changes_suggestion) ... ok
+test_concurrent_same_key (test_agent.AgentTests.test_concurrent_same_key) ... ok
+test_conflict_requires_confirmation (test_agent.AgentTests.test_conflict_requires_confirmation) ... ok
+test_conflicting_concurrent_reservations (test_agent.AgentTests.test_conflicting_concurrent_reservations) ... ok
+test_explicit_consent (test_agent.AgentTests.test_explicit_consent) ... ok
+test_input_validation (test_agent.AgentTests.test_input_validation) ... ok
+test_invalid_duration_does_not_crash (test_agent.AgentTests.test_invalid_duration_does_not_crash) ... ok
+test_invalid_model_output (test_agent.AgentTests.test_invalid_model_output) ... ok
+test_missing_key_is_error (test_agent.AgentTests.test_missing_key_is_error) ... ok
+test_missing_metadata (test_agent.AgentTests.test_missing_metadata) ... ok
+test_model_cannot_claim_user_consent (test_agent.AgentTests.test_model_cannot_claim_user_consent) ... ok
+test_model_error_no_mock_fallback (test_agent.AgentTests.test_model_error_no_mock_fallback) ... ok
+test_no_available_slots (test_agent.AgentTests.test_no_available_slots) ... ok
+test_normal (test_agent.AgentTests.test_normal) ... ok
+test_premature_finish_does_not_claim_completion (test_agent.AgentTests.test_premature_finish_does_not_claim_completion) ... ok
+test_prompt_injection_cannot_bypass_write_guard (test_agent.AgentTests.test_prompt_injection_cannot_bypass_write_guard) ... ok
+test_recheck_changed_rules_at_save (test_agent.AgentTests.test_recheck_changed_rules_at_save) ... ok
+test_repeat_only_one_draft (test_agent.AgentTests.test_repeat_only_one_draft) ... ok
+test_repeat_when_only_slot_reserved (test_agent.AgentTests.test_repeat_when_only_slot_reserved) ... ok
+test_same_key_different_input_rejected (test_agent.AgentTests.test_same_key_different_input_rejected) ... ok
+test_save_failure (test_agent.AgentTests.test_save_failure) ... ok
+test_save_without_review_rejected (test_agent.AgentTests.test_save_without_review_rejected) ... ok
+test_soft_time (test_agent.AgentTests.test_soft_time) ... ok
+test_step_limit (test_agent.AgentTests.test_step_limit) ... ok
+test_unknown_material (test_agent.AgentTests.test_unknown_material) ... ok
+test_unknown_tool (test_agent.AgentTests.test_unknown_tool) ... ok
+test_utc_equivalent_slot_accepted (test_agent.AgentTests.test_utc_equivalent_slot_accepted) ... ok
+
+----------------------------------------------------------------------
+Ran 28 tests in 0.399s
+
+OK

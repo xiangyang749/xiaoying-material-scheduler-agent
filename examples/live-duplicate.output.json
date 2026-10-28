@@ -1,0 +1,273 @@
+{
+  "input": {
+    "request_id": "normal-001",
+    "material_ids": [
+      "M01"
+    ],
+    "channel": "xiaoying",
+    "requested_at": "2026-11-01T20:00:00+08:00",
+    "hard_time": true
+  },
+  "fixture": {
+    "materials": {
+      "M01": {
+        "title": "城市旅行片段",
+        "rights": "cleared",
+        "duration_seconds": 30
+      },
+      "M02": {
+        "title": "缺少授权信息",
+        "duration_seconds": 25
+      },
+      "M03": {
+        "title": "guaranteed profit campaign",
+        "rights": "cleared",
+        "duration_seconds": 20
+      }
+    },
+    "rules": {
+      "required_fields": [
+        "title",
+        "rights",
+        "duration_seconds"
+      ],
+      "blocked_terms": [
+        "guaranteed profit"
+      ]
+    },
+    "occupied": [
+      {
+        "channel": "xiaoying",
+        "at": "2026-11-01T18:00:00+08:00"
+      }
+    ],
+    "slots": [
+      "2026-11-01T19:00:00+08:00",
+      "2026-11-01T20:00:00+08:00"
+    ]
+  },
+  "fail_save": false,
+  "max_steps": 10,
+  "database_row_count": 1,
+  "checks": {
+    "expected_status": true,
+    "execution_status": true,
+    "draft_count": true,
+    "never_published": true,
+    "hard_requirement_preserved": true,
+    "same_id": true,
+    "duplicate_receipt": true
+  },
+  "runs": [
+    {
+      "mode": "live_deepseek",
+      "model": "deepseek-flash",
+      "result": {
+        "material_id": "M01",
+        "status": "ready",
+        "review": {
+          "status": "approved",
+          "reasons": []
+        },
+        "requested_at": "2026-11-01T20:00:00+08:00",
+        "suggested_at": "2026-11-01T20:00:00+08:00",
+        "pending_items": [],
+        "draft_save_status": "saved",
+        "receipt": {
+          "ok": true,
+          "draft_id": 1,
+          "slot": "2026-11-01T12:00:00+00:00",
+          "status": "ready",
+          "duplicate": false
+        },
+        "execution_status": "finished",
+        "published": false
+      },
+      "trace": [
+        {
+          "step": 1,
+          "tool": "read_material",
+          "arguments": {
+            "reason": "Request references material M01 for review and scheduling; need its metadata first."
+          },
+          "observation": {
+            "ok": true,
+            "material": {
+              "title": "城市旅行片段",
+              "rights": "cleared",
+              "duration_seconds": 30
+            }
+          },
+          "time_utc": "2026-10-28T12:14:44.668594+00:00"
+        },
+        {
+          "step": 2,
+          "tool": "check_rules",
+          "arguments": {
+            "reason": "Material M01 has cleared rights and a 30s duration; checking rule compliance before slot lookup."
+          },
+          "observation": {
+            "ok": true,
+            "status": "approved",
+            "reasons": []
+          },
+          "time_utc": "2026-10-28T12:14:45.914312+00:00"
+        },
+        {
+          "step": 3,
+          "tool": "query_slots",
+          "arguments": {
+            "reason": "Review approved for M01; checking availability for requested 2026-11-01 20:00 slot and alternatives."
+          },
+          "observation": {
+            "ok": true,
+            "requested_at": "2026-11-01T20:00:00+08:00",
+            "requested_available": true,
+            "available": [
+              "2026-11-01T20:00:00+08:00",
+              "2026-11-01T19:00:00+08:00"
+            ],
+            "hard_time": true,
+            "approved_slots": [],
+            "existing_draft_slot": null
+          },
+          "time_utc": "2026-10-28T12:14:47.087943+00:00"
+        },
+        {
+          "step": 4,
+          "tool": "save_draft",
+          "arguments": {
+            "reason": "M01 review approved; requested hard slot 2026-11-01 20:00 is available and matches the request.",
+            "slot": "2026-11-01T20:00:00+08:00"
+          },
+          "observation": {
+            "ok": true,
+            "draft_id": 1,
+            "slot": "2026-11-01T12:00:00+00:00",
+            "status": "ready",
+            "duplicate": false
+          },
+          "time_utc": "2026-10-28T12:14:48.104931+00:00"
+        },
+        {
+          "step": 5,
+          "tool": "finish",
+          "arguments": {
+            "reason": "Draft saved for M01 at the requested 2026-11-01 20:00 (+08:00) slot, which was confirmed available; review passed with cleared rights."
+          },
+          "observation": {
+            "ok": true,
+            "finished": true
+          },
+          "time_utc": "2026-10-28T12:14:49.588228+00:00"
+        }
+      ]
+    },
+    {
+      "mode": "live_deepseek",
+      "model": "deepseek-flash",
+      "result": {
+        "material_id": "M01",
+        "status": "ready",
+        "review": {
+          "status": "approved",
+          "reasons": []
+        },
+        "requested_at": "2026-11-01T20:00:00+08:00",
+        "suggested_at": "2026-11-01T20:00:00+08:00",
+        "pending_items": [],
+        "draft_save_status": "saved",
+        "receipt": {
+          "ok": true,
+          "draft_id": 1,
+          "slot": "2026-11-01T12:00:00+00:00",
+          "status": "ready",
+          "duplicate": true
+        },
+        "execution_status": "finished",
+        "published": false
+      },
+      "trace": [
+        {
+          "step": 1,
+          "tool": "read_material",
+          "arguments": {
+            "reason": "Read M01 metadata to begin review for channel xiaoying, requested 2026-11-01T20:00 hard time."
+          },
+          "observation": {
+            "ok": true,
+            "material": {
+              "title": "城市旅行片段",
+              "rights": "cleared",
+              "duration_seconds": 30
+            }
+          },
+          "time_utc": "2026-10-28T12:14:51.014477+00:00"
+        },
+        {
+          "step": 2,
+          "tool": "check_rules",
+          "arguments": {
+            "reason": "M01 has cleared rights and 30s duration; verify compliance against review rules before slot query."
+          },
+          "observation": {
+            "ok": true,
+            "status": "approved",
+            "reasons": []
+          },
+          "time_utc": "2026-10-28T12:14:51.995620+00:00"
+        },
+        {
+          "step": 3,
+          "tool": "query_slots",
+          "arguments": {
+            "reason": "Review approved with cleared rights; query availability for requested hard slot 2026-11-01T20:00 and alternatives."
+          },
+          "observation": {
+            "ok": true,
+            "requested_at": "2026-11-01T20:00:00+08:00",
+            "requested_available": true,
+            "available": [
+              "2026-11-01T20:00:00+08:00",
+              "2026-11-01T19:00:00+08:00"
+            ],
+            "hard_time": true,
+            "approved_slots": [],
+            "existing_draft_slot": "2026-11-01T12:00:00+00:00"
+          },
+          "time_utc": "2026-10-28T12:14:53.314286+00:00"
+        },
+        {
+          "step": 4,
+          "tool": "save_draft",
+          "arguments": {
+            "reason": "Requested hard slot 2026-11-01T20:00+08:00 is available and review approved; saving draft only at that slot.",
+            "slot": "2026-11-01T20:00:00+08:00"
+          },
+          "observation": {
+            "ok": true,
+            "draft_id": 1,
+            "slot": "2026-11-01T12:00:00+00:00",
+            "status": "ready",
+            "duplicate": true
+          },
+          "time_utc": "2026-10-28T12:14:54.840139+00:00"
+        },
+        {
+          "step": 5,
+          "tool": "finish",
+          "arguments": {
+            "reason": "M01 rights cleared, review approved, and requested hard slot 2026-11-01T20:00+08:00 was available; draft saved there (duplicate of existing draft, draft_id 1). No publication performed."
+          },
+          "observation": {
+            "ok": true,
+            "finished": true
+          },
+          "time_utc": "2026-10-28T12:14:56.217152+00:00"
+        }
+      ]
+    }
+  ],
+  "recorded_at_utc": "2026-10-28T12:14:56.218152+00:00",
+  "elapsed_seconds": 12.853
+}

@@ -1,0 +1,130 @@
+{
+  "input": {
+    "request_id": "missing-001",
+    "material_ids": [
+      "M02"
+    ],
+    "channel": "xiaoying",
+    "requested_at": "2026-11-01T20:00:00+08:00",
+    "hard_time": true
+  },
+  "fixture": {
+    "materials": {
+      "M01": {
+        "title": "城市旅行片段",
+        "rights": "cleared",
+        "duration_seconds": 30
+      },
+      "M02": {
+        "title": "缺少授权信息",
+        "duration_seconds": 25
+      },
+      "M03": {
+        "title": "guaranteed profit campaign",
+        "rights": "cleared",
+        "duration_seconds": 20
+      }
+    },
+    "rules": {
+      "required_fields": [
+        "title",
+        "rights",
+        "duration_seconds"
+      ],
+      "blocked_terms": [
+        "guaranteed profit"
+      ]
+    },
+    "occupied": [
+      {
+        "channel": "xiaoying",
+        "at": "2026-11-01T18:00:00+08:00"
+      }
+    ],
+    "slots": [
+      "2026-11-01T19:00:00+08:00",
+      "2026-11-01T20:00:00+08:00"
+    ]
+  },
+  "fail_save": false,
+  "max_steps": 10,
+  "database_row_count": 0,
+  "checks": {
+    "expected_status": true,
+    "execution_status": true,
+    "draft_count": true,
+    "never_published": true,
+    "hard_requirement_preserved": true
+  },
+  "runs": [
+    {
+      "mode": "live_deepseek",
+      "model": "deepseek-flash",
+      "result": {
+        "material_id": "M02",
+        "status": "needs_information",
+        "review": {
+          "status": "needs_information",
+          "reasons": [
+            "missing:rights"
+          ]
+        },
+        "requested_at": "2026-11-01T20:00:00+08:00",
+        "suggested_at": null,
+        "pending_items": [
+          "missing:rights"
+        ],
+        "draft_save_status": "not_saved",
+        "receipt": null,
+        "execution_status": "finished",
+        "published": false
+      },
+      "trace": [
+        {
+          "step": 1,
+          "tool": "read_material",
+          "arguments": {
+            "reason": "Reviewing M02 metadata against the hard-time scheduling request."
+          },
+          "observation": {
+            "ok": true,
+            "material": {
+              "title": "缺少授权信息",
+              "duration_seconds": 25
+            }
+          },
+          "time_utc": "2026-10-28T12:14:21.618227+00:00"
+        },
+        {
+          "step": 2,
+          "tool": "check_rules",
+          "arguments": {
+            "reason": "M02 has only title and duration; authorization and other required review metadata are missing."
+          },
+          "observation": {
+            "ok": true,
+            "status": "needs_information",
+            "reasons": [
+              "missing:rights"
+            ]
+          },
+          "time_utc": "2026-10-28T12:14:23.030594+00:00"
+        },
+        {
+          "step": 3,
+          "tool": "finish",
+          "arguments": {
+            "reason": "Cannot schedule M02: required rights metadata is missing, so the review is blocked and no draft was saved."
+          },
+          "observation": {
+            "ok": true,
+            "finished": true
+          },
+          "time_utc": "2026-10-28T12:14:24.218399+00:00"
+        }
+      ]
+    }
+  ],
+  "recorded_at_utc": "2026-10-28T12:14:24.219404+00:00",
+  "elapsed_seconds": 3.857
+}

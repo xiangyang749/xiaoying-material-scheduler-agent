@@ -1,0 +1,108 @@
+{
+  "runs": [
+    {
+      "mode": "offline_mock",
+      "model": "deterministic-test-double",
+      "result": {
+        "material_id": "M01",
+        "status": "ready",
+        "review": {
+          "status": "approved",
+          "reasons": []
+        },
+        "requested_at": "2026-11-01T20:00:00+08:00",
+        "suggested_at": "2026-11-01T20:00:00+08:00",
+        "pending_items": [],
+        "draft_save_status": "saved",
+        "receipt": {
+          "ok": true,
+          "draft_id": 1,
+          "slot": "2026-11-01T12:00:00+00:00",
+          "status": "ready",
+          "duplicate": true
+        },
+        "execution_status": "finished",
+        "published": false
+      },
+      "trace": [
+        {
+          "step": 1,
+          "tool": "read_material",
+          "arguments": {
+            "reason": "Read material metadata before review."
+          },
+          "observation": {
+            "ok": true,
+            "material": {
+              "title": "城市旅行片段",
+              "rights": "cleared",
+              "duration_seconds": 30
+            }
+          },
+          "time_utc": "2026-10-28T12:17:59.114091+00:00"
+        },
+        {
+          "step": 2,
+          "tool": "check_rules",
+          "arguments": {
+            "reason": "Apply review rules to observed metadata."
+          },
+          "observation": {
+            "ok": true,
+            "status": "approved",
+            "reasons": []
+          },
+          "time_utc": "2026-10-28T12:17:59.114091+00:00"
+        },
+        {
+          "step": 3,
+          "tool": "query_slots",
+          "arguments": {
+            "reason": "Review passed; inspect actual slot availability."
+          },
+          "observation": {
+            "ok": true,
+            "requested_at": "2026-11-01T20:00:00+08:00",
+            "requested_available": true,
+            "available": [
+              "2026-11-01T20:00:00+08:00",
+              "2026-11-01T19:00:00+08:00"
+            ],
+            "hard_time": true,
+            "approved_slots": [],
+            "existing_draft_slot": "2026-11-01T12:00:00+00:00"
+          },
+          "time_utc": "2026-10-28T12:17:59.115090+00:00"
+        },
+        {
+          "step": 4,
+          "tool": "save_draft",
+          "arguments": {
+            "slot": "2026-11-01T20:00:00+08:00",
+            "reason": "Requested slot is available."
+          },
+          "observation": {
+            "ok": true,
+            "draft_id": 1,
+            "slot": "2026-11-01T12:00:00+00:00",
+            "status": "ready",
+            "duplicate": true
+          },
+          "time_utc": "2026-10-28T12:17:59.115090+00:00"
+        },
+        {
+          "step": 5,
+          "tool": "finish",
+          "arguments": {
+            "reason": "Stop based on the observed review, availability, or save result."
+          },
+          "observation": {
+            "ok": true,
+            "finished": true
+          },
+          "time_utc": "2026-10-28T12:17:59.115090+00:00"
+        }
+      ]
+    }
+  ]
+}

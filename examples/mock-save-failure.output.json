@@ -1,0 +1,163 @@
+{
+  "input": {
+    "request_id": "normal-001",
+    "material_ids": [
+      "M01"
+    ],
+    "channel": "xiaoying",
+    "requested_at": "2026-11-01T20:00:00+08:00",
+    "hard_time": true
+  },
+  "fixture": {
+    "materials": {
+      "M01": {
+        "title": "城市旅行片段",
+        "rights": "cleared",
+        "duration_seconds": 30
+      },
+      "M02": {
+        "title": "缺少授权信息",
+        "duration_seconds": 25
+      },
+      "M03": {
+        "title": "guaranteed profit campaign",
+        "rights": "cleared",
+        "duration_seconds": 20
+      }
+    },
+    "rules": {
+      "required_fields": [
+        "title",
+        "rights",
+        "duration_seconds"
+      ],
+      "blocked_terms": [
+        "guaranteed profit"
+      ]
+    },
+    "occupied": [
+      {
+        "channel": "xiaoying",
+        "at": "2026-11-01T18:00:00+08:00"
+      }
+    ],
+    "slots": [
+      "2026-11-01T19:00:00+08:00",
+      "2026-11-01T20:00:00+08:00"
+    ]
+  },
+  "fail_save": true,
+  "max_steps": 10,
+  "database_row_count": 0,
+  "checks": {
+    "expected_status": true,
+    "execution_status": true,
+    "draft_count": true,
+    "never_published": true,
+    "hard_requirement_preserved": true
+  },
+  "runs": [
+    {
+      "mode": "offline_mock",
+      "model": "deterministic-test-double",
+      "result": {
+        "material_id": "M01",
+        "status": "save_failed",
+        "review": {
+          "status": "approved",
+          "reasons": []
+        },
+        "requested_at": "2026-11-01T20:00:00+08:00",
+        "suggested_at": null,
+        "pending_items": [],
+        "draft_save_status": "failed",
+        "receipt": {
+          "ok": false,
+          "error": "save_failed",
+          "retryable": false
+        },
+        "execution_status": "finished",
+        "published": false
+      },
+      "trace": [
+        {
+          "step": 1,
+          "tool": "read_material",
+          "arguments": {
+            "reason": "Read material metadata before review."
+          },
+          "observation": {
+            "ok": true,
+            "material": {
+              "title": "城市旅行片段",
+              "rights": "cleared",
+              "duration_seconds": 30
+            }
+          },
+          "time_utc": "2026-10-28T12:14:04.147513+00:00"
+        },
+        {
+          "step": 2,
+          "tool": "check_rules",
+          "arguments": {
+            "reason": "Apply review rules to observed metadata."
+          },
+          "observation": {
+            "ok": true,
+            "status": "approved",
+            "reasons": []
+          },
+          "time_utc": "2026-10-28T12:14:04.147513+00:00"
+        },
+        {
+          "step": 3,
+          "tool": "query_slots",
+          "arguments": {
+            "reason": "Review passed; inspect actual slot availability."
+          },
+          "observation": {
+            "ok": true,
+            "requested_at": "2026-11-01T20:00:00+08:00",
+            "requested_available": true,
+            "available": [
+              "2026-11-01T20:00:00+08:00",
+              "2026-11-01T19:00:00+08:00"
+            ],
+            "hard_time": true,
+            "approved_slots": [],
+            "existing_draft_slot": null
+          },
+          "time_utc": "2026-10-28T12:14:04.148514+00:00"
+        },
+        {
+          "step": 4,
+          "tool": "save_draft",
+          "arguments": {
+            "slot": "2026-11-01T20:00:00+08:00",
+            "reason": "Requested slot is available."
+          },
+          "observation": {
+            "ok": false,
+            "error": "save_failed",
+            "retryable": false
+          },
+          "time_utc": "2026-10-28T12:14:04.149514+00:00"
+        },
+        {
+          "step": 5,
+          "tool": "finish",
+          "arguments": {
+            "reason": "Stop based on the observed review, availability, or save result."
+          },
+          "observation": {
+            "ok": true,
+            "finished": true
+          },
+          "time_utc": "2026-10-28T12:14:04.149514+00:00"
+        }
+      ]
+    }
+  ],
+  "recorded_at_utc": "2026-10-28T12:14:04.150513+00:00",
+  "elapsed_seconds": 0.036
+}

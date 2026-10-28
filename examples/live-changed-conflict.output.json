@@ -1,0 +1,173 @@
+{
+  "input": {
+    "request_id": "conflict-001",
+    "material_ids": [
+      "M01"
+    ],
+    "channel": "xiaoying",
+    "requested_at": "2026-11-01T18:00:00+08:00",
+    "hard_time": true
+  },
+  "fixture": {
+    "materials": {
+      "M01": {
+        "title": "城市旅行片段",
+        "rights": "cleared",
+        "duration_seconds": 30
+      },
+      "M02": {
+        "title": "缺少授权信息",
+        "duration_seconds": 25
+      },
+      "M03": {
+        "title": "guaranteed profit campaign",
+        "rights": "cleared",
+        "duration_seconds": 20
+      }
+    },
+    "rules": {
+      "required_fields": [
+        "title",
+        "rights",
+        "duration_seconds"
+      ],
+      "blocked_terms": [
+        "guaranteed profit"
+      ]
+    },
+    "occupied": [
+      {
+        "channel": "xiaoying",
+        "at": "2026-11-01T18:00:00+08:00"
+      },
+      {
+        "channel": "xiaoying",
+        "at": "2026-11-01T19:00:00+08:00"
+      }
+    ],
+    "slots": [
+      "2026-11-01T19:00:00+08:00",
+      "2026-11-01T20:00:00+08:00"
+    ]
+  },
+  "fail_save": false,
+  "max_steps": 10,
+  "database_row_count": 1,
+  "checks": {
+    "expected_status": true,
+    "execution_status": true,
+    "draft_count": true,
+    "never_published": true,
+    "hard_requirement_preserved": true,
+    "expected_slot": true
+  },
+  "runs": [
+    {
+      "mode": "live_deepseek",
+      "model": "deepseek-flash",
+      "result": {
+        "material_id": "M01",
+        "status": "pending_confirmation",
+        "review": {
+          "status": "approved",
+          "reasons": []
+        },
+        "requested_at": "2026-11-01T18:00:00+08:00",
+        "suggested_at": "2026-11-01T20:00:00+08:00",
+        "pending_items": [
+          "confirm_time_change"
+        ],
+        "draft_save_status": "saved",
+        "receipt": {
+          "ok": true,
+          "draft_id": 1,
+          "slot": "2026-11-01T12:00:00+00:00",
+          "status": "pending_confirmation",
+          "duplicate": false
+        },
+        "execution_status": "finished",
+        "published": false
+      },
+      "trace": [
+        {
+          "step": 1,
+          "tool": "read_material",
+          "arguments": {
+            "reason": "Read M01 metadata for the hard-time publication request conflict-001."
+          },
+          "observation": {
+            "ok": true,
+            "material": {
+              "title": "城市旅行片段",
+              "rights": "cleared",
+              "duration_seconds": 30
+            }
+          },
+          "time_utc": "2026-10-28T12:14:57.475630+00:00"
+        },
+        {
+          "step": 2,
+          "tool": "check_rules",
+          "arguments": {
+            "reason": "M01 rights cleared, 30s duration; check against publication rules."
+          },
+          "observation": {
+            "ok": true,
+            "status": "approved",
+            "reasons": []
+          },
+          "time_utc": "2026-10-28T12:14:58.647510+00:00"
+        },
+        {
+          "step": 3,
+          "tool": "query_slots",
+          "arguments": {
+            "reason": "Review approved; query slots for requested 2026-11-01T18:00+08:00 hard time."
+          },
+          "observation": {
+            "ok": true,
+            "requested_at": "2026-11-01T18:00:00+08:00",
+            "requested_available": false,
+            "available": [
+              "2026-11-01T20:00:00+08:00"
+            ],
+            "hard_time": true,
+            "approved_slots": [],
+            "existing_draft_slot": null
+          },
+          "time_utc": "2026-10-28T12:14:59.725070+00:00"
+        },
+        {
+          "step": 4,
+          "tool": "save_draft",
+          "arguments": {
+            "slot": "2026-11-01T20:00:00+08:00",
+            "reason": "Requested 18:00 unavailable and hard_time with no approved_slots; save earliest same-day alternative 20:00 as pending_confirmation draft."
+          },
+          "observation": {
+            "ok": true,
+            "draft_id": 1,
+            "slot": "2026-11-01T12:00:00+00:00",
+            "status": "pending_confirmation",
+            "duplicate": false
+          },
+          "time_utc": "2026-10-28T12:15:01.107160+00:00"
+        },
+        {
+          "step": 5,
+          "tool": "finish",
+          "arguments": {
+            "reason": "M01 approved and saved as pending_confirmation draft at the only offered same-day alternative (2026-11-01 20:00 +08:00) because the hard requested 18:00 slot was unavailable and no approved_slots were provided. No publication performed."
+          },
+          "observation": {
+            "ok": true,
+            "finished": true
+          },
+          "time_utc": "2026-10-28T12:15:02.371020+00:00"
+        }
+      ]
+    }
+  ],
+  "recorded_at_utc": "2026-10-28T12:15:02.372025+00:00",
+  "elapsed_seconds": 6.153
+}

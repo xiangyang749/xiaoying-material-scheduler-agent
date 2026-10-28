@@ -1,0 +1,82 @@
+[
+  {
+    "case": "normal",
+    "artifact": "examples/live-normal.output.json",
+    "status": "ready",
+    "execution_status": "finished",
+    "passed": true,
+    "elapsed_seconds": 6.649
+  },
+  {
+    "case": "missing",
+    "artifact": "examples/live-missing.output.json",
+    "status": "needs_information",
+    "execution_status": "finished",
+    "passed": true,
+    "elapsed_seconds": 3.857
+  },
+  {
+    "case": "risk",
+    "artifact": "examples/live-risk.output.json",
+    "status": "blocked",
+    "execution_status": "finished",
+    "passed": true,
+    "elapsed_seconds": 3.654
+  },
+  {
+    "case": "conflict",
+    "artifact": "examples/live-conflict.output.json",
+    "status": "pending_confirmation",
+    "execution_status": "finished",
+    "passed": true,
+    "elapsed_seconds": 9.074
+  },
+  {
+    "case": "save-failure",
+    "artifact": "examples/live-save-failure.output.json",
+    "status": "save_failed",
+    "execution_status": "finished",
+    "passed": true,
+    "elapsed_seconds": 6.415
+  },
+  {
+    "case": "duplicate",
+    "artifact": "examples/live-duplicate.output.json",
+    "status": "ready",
+    "execution_status": "finished",
+    "passed": true,
+    "elapsed_seconds": 12.853
+  },
+  {
+    "case": "changed-conflict",
+    "artifact": "examples/live-changed-conflict.output.json",
+    "status": "pending_confirmation",
+    "execution_status": "finished",
+    "passed": true,
+    "elapsed_seconds": 6.153
+  },
+  {
+    "case": "confirmed",
+    "artifact": "examples/live-confirmed.output.json",
+    "status": "ready",
+    "execution_status": "finished",
+    "passed": true,
+    "elapsed_seconds": 6.204
+  },
+  {
+    "case": "no-slots",
+    "artifact": "examples/live-no-slots.output.json",
+    "status": "no_available_slots",
+    "execution_status": "finished",
+    "passed": true,
+    "elapsed_seconds": 5.797
+  },
+  {
+    "case": "step-limit",
+    "artifact": "examples/live-step-limit.output.json",
+    "status": "incomplete",
+    "execution_status": "step_limit",
+    "passed": true,
+    "elapsed_seconds": 2.181
+  }
+]

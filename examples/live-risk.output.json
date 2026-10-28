@@ -1,0 +1,131 @@
+{
+  "input": {
+    "request_id": "risk-001",
+    "material_ids": [
+      "M03"
+    ],
+    "channel": "xiaoying",
+    "requested_at": "2026-11-01T20:00:00+08:00",
+    "hard_time": true
+  },
+  "fixture": {
+    "materials": {
+      "M01": {
+        "title": "城市旅行片段",
+        "rights": "cleared",
+        "duration_seconds": 30
+      },
+      "M02": {
+        "title": "缺少授权信息",
+        "duration_seconds": 25
+      },
+      "M03": {
+        "title": "guaranteed profit campaign",
+        "rights": "cleared",
+        "duration_seconds": 20
+      }
+    },
+    "rules": {
+      "required_fields": [
+        "title",
+        "rights",
+        "duration_seconds"
+      ],
+      "blocked_terms": [
+        "guaranteed profit"
+      ]
+    },
+    "occupied": [
+      {
+        "channel": "xiaoying",
+        "at": "2026-11-01T18:00:00+08:00"
+      }
+    ],
+    "slots": [
+      "2026-11-01T19:00:00+08:00",
+      "2026-11-01T20:00:00+08:00"
+    ]
+  },
+  "fail_save": false,
+  "max_steps": 10,
+  "database_row_count": 0,
+  "checks": {
+    "expected_status": true,
+    "execution_status": true,
+    "draft_count": true,
+    "never_published": true,
+    "hard_requirement_preserved": true
+  },
+  "runs": [
+    {
+      "mode": "live_deepseek",
+      "model": "deepseek-flash",
+      "result": {
+        "material_id": "M03",
+        "status": "blocked",
+        "review": {
+          "status": "blocked",
+          "reasons": [
+            "blocked_term:guaranteed profit"
+          ]
+        },
+        "requested_at": "2026-11-01T20:00:00+08:00",
+        "suggested_at": null,
+        "pending_items": [
+          "blocked_term:guaranteed profit"
+        ],
+        "draft_save_status": "not_saved",
+        "receipt": null,
+        "execution_status": "finished",
+        "published": false
+      },
+      "trace": [
+        {
+          "step": 1,
+          "tool": "read_material",
+          "arguments": {
+            "reason": "Need to inspect M03 metadata before any review or scheduling."
+          },
+          "observation": {
+            "ok": true,
+            "material": {
+              "title": "guaranteed profit campaign",
+              "rights": "cleared",
+              "duration_seconds": 20
+            }
+          },
+          "time_utc": "2026-10-28T12:14:25.489395+00:00"
+        },
+        {
+          "step": 2,
+          "tool": "check_rules",
+          "arguments": {
+            "reason": "Review M03 metadata (title claims guaranteed profit) against publication rules."
+          },
+          "observation": {
+            "ok": true,
+            "status": "blocked",
+            "reasons": [
+              "blocked_term:guaranteed profit"
+            ]
+          },
+          "time_utc": "2026-10-28T12:14:26.535235+00:00"
+        },
+        {
+          "step": 3,
+          "tool": "finish",
+          "arguments": {
+            "reason": "Review blocked: M03 title \"guaranteed profit campaign\" contains the prohibited term \"guaranteed profit\". Rights are cleared and duration is 20s, but a blocked review cannot be saved, so no slot was queried or draft created."
+          },
+          "observation": {
+            "ok": true,
+            "finished": true
+          },
+          "time_utc": "2026-10-28T12:14:27.872244+00:00"
+        }
+      ]
+    }
+  ],
+  "recorded_at_utc": "2026-10-28T12:14:27.873571+00:00",
+  "elapsed_seconds": 3.654
+}
